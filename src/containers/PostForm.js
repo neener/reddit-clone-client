@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { updatePostFormData } from '../actions/postForm';
+import { createPost } from '../actions/posts';
 
 class PostForm extends Component {
 
@@ -13,13 +14,18 @@ class PostForm extends Component {
 		this.props.updatePostFormData(currentPostFormData)
 	}
 
+	handleOnSubmit = event => {
+		event.preventDefault()
+		this.props.createPost(this.props.postFormData)
+	}
+
 	render() {
 		const { title, link, img_url } = this.props.postFormData;
 		
 		return (
 			<div>
 				Create a New Post
-				<form>
+				<form onSubmit={this.handleOnSubmit}>
 					<div>
 						<label htmlFor="title">Title:</label>
 						<input
@@ -47,6 +53,8 @@ class PostForm extends Component {
 							value={img_url}
 						/>
 					</div>
+
+					<button type="submit">Post</button>
 				</form>
 			</div>
 		)
@@ -59,4 +67,7 @@ const mapStateToProps = state => {
 	}
 }
 
-export default connect(mapStateToProps, { updatePostFormData })(PostForm);
+export default connect(mapStateToProps, { 
+	updatePostFormData,
+	createPost
+})(PostForm);
