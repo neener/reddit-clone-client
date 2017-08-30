@@ -1,17 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
+
+import PostCard from '../components/PostCard';
+import PostForm from './PostForm';
 import './Posts.css'
 
-const Posts = (props) => (
-	<div>
-		<h3>Posts</h3>
-		{props.posts.map(post =>
-			<div key={post.id} className="PostCard"> 
-				<h3>{post.title}</h3>
-				<p>{post.link}</p>
-				<img className="PostImage" src={post.img_url} alt={post.title} />
+class Posts extends Component {
+
+	render() {
+		return(
+			<div className="PostsContainer">
+				<h1>Posts</h1>
+				{this.props.posts.map(post => <PostCard key={post.id} post={post} />)}
+				<PostForm />
 			</div>
-		)}
-	</div>
-);
+		);
+	}
+}
 
 export default Posts;
