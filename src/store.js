@@ -5,24 +5,15 @@ import {
 } from 'redux';
 import thunk from 'redux-thunk';
 
-const postsReducer = (state = [], action) => {
-	switch(action.type) {
-		case 'GET_POSTS_SUCCESS':
-			return action.posts;
-
-		default:
-			return state;
-
-	}
-}
+import posts from './reducers/posts';
 
 const reducers = combineReducers({
-	posts: postsReducer
+	posts
 });
 const middleware = [thunk];
 
 export default createStore(
 	reducers,
+	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 	applyMiddleware(...middleware),
-	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );

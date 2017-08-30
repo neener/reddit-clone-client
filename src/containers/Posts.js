@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import PostCard from '../components/PostCard';
 import PostForm from './PostForm';
+import { getPosts } from '../actions/posts';
 import './Posts.css'
 
 class Posts extends Component {
+
+	componentDidMount() {
+		this.props.getPosts()
+	}
 
 	render() {
 		return(
@@ -17,4 +23,10 @@ class Posts extends Component {
 	}
 }
 
-export default Posts;
+const mapStateToProps = (state) => {
+	return ({
+		posts: state.posts
+	})
+}
+
+export default connect(mapStateToProps, { getPosts })(Posts);
