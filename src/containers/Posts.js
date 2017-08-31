@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import PostCard from '../components/PostCard';
-import PostForm from './PostForm';
+//import PostForm from './PostForm';
 import { getPosts } from '../actions/posts';
 import './Posts.css'
 
@@ -17,7 +18,6 @@ class Posts extends Component {
 			<div className="PostsContainer">
 				<h1>Posts</h1>
 				{this.props.posts.map(post => <PostCard key={post.id} post={post} />)}
-				<PostForm />
 			</div>
 		);
 	}
@@ -29,4 +29,8 @@ const mapStateToProps = (state) => {
 	})
 }
 
-export default connect(mapStateToProps, { getPosts })(Posts);
+const matchDispatchToProps = dispatch => {
+	return bindActionCreators({ getPosts: getPosts}, dispatch)
+}
+
+export default connect(mapStateToProps, matchDispatchToProps)(Posts);

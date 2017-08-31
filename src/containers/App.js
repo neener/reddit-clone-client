@@ -20,22 +20,20 @@ class App extends Component {
 		return (
 			<Router>
 				<Switch>
-				<div className="App">
-					<div className="App-header">
-						<h2>Freddit</h2>
-					</div>
-					<div className="App-intro">
-						<div>
+					<div className="App">
+						<div className="App-header">
+							<h2>Freddit</h2>
+						</div>
+						<div className="App-intro">
 							<Navbar />
-							<Posts />
+						</div>
+						<div className="App-main-content">
+							<Route exact path='/' component={Posts}/>
+							<Route exact path='/posts' component={Posts}/>
+							<Route exact path='/newpost' component={PostForm}/>
+							<Route exact path='/about' component={About}/>
 						</div>
 					</div>
-					<div className="App-main-content">
-						<Route exact path='/posts' render={Posts}/>
-						<Route exact path='/newpost' render={PostForm}/>
-						<Route exact path='/about' render={About}/>
-					</div>
-				</div>
 				</Switch>
 			</Router>
 		);

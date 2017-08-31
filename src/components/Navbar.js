@@ -4,9 +4,9 @@ import { NavLink } from 'react-router-dom'
 const Navbar = () => 
 
 <div className='navbar'>
-	<NavLink to='/posts'> Posts </NavLink>
-	<NavLink to='/newpost'> New Post </NavLink>
-	<NavLink to='/about'> About </NavLink>
+	<NavLink to='/posts' exact>Posts</NavLink>
+	<NavLink to='/newpost' exact>New Post</NavLink>
+	<NavLink to='/about' exact>About</NavLink>
 </div>
 
 export default Navbar
