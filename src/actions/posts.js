@@ -5,33 +5,53 @@ const API_URL = process.env.REACT_APP_API_URL;
 // ** Action Creators **
 export const setPosts = posts => {
 	return {
-		type: 'GET_POSTS_SUCCESS',
+		type: 'SET_POSTS',
 		posts
-	}
-}
+	};
+};
 
 export const addPost = post => {
 	return {
-		type: 'CREATE_POST_SUCCESS',
+		type: 'ADD_POST',
 		post
-	}
-}
+	};
+};
 
-export const removePost = postIndex => {
+export const replacePost = post => {
+	return {
+		type: 'REPLACE_POST',
+		post
+	};
+};
+
+export const removePost = postId => {
 	return{
-		type: 'REMOVING_POST',
-		postIndex
-	}
-}
+		type: 'REMOVE_POST',
+		postId
+	};
+};
+
 // ** Async Actions **
-export const getPosts = () => {
+
+export const fetchPosts = () => {
 	return dispatch => {
 		return fetch(`${API_URL}/posts`)
 			.then(response => response.json())
 			.then(posts => dispatch(setPosts(posts)))
 			.catch(error => console.log(error));
-	}
-}
+	};
+};
+
+export const fetchPost = (postId) => {
+	return dispatch => {
+		return fetch (`${API_URL}/posts/${postId}`)
+			.then(response => response.json())
+			.then(post => {
+				dispatch(setPosts([post]));
+			})
+			.catch(err => console.log(error));
+	};
+};
 
 export const createPost = post => {
 	return dispatch => {
@@ -47,19 +67,38 @@ export const createPost = post => {
 				dispatch(addPost(post))
 				dispatch(resetPostForm())
 			})
-			.catch(error => console.log(error))
-	}
-}
+			.catch(error => console.log(error));
+	};
+};
 
-export const deletePost = (postIndex, routerHistory) => {
+export const updatePost = (post, routerHistory) => {
 	return dispatch => {
-		return fetch(`${API_URL}/posts/${postIndex}`, {
+		return fetch(`${API_URL}/posts/${post.id}`, {
+			method: 'PUT',
+			headers: {
+				'Content_Type': 'application/json'
+			},
+			body: JSON.stringify({ post: post })
+		})
+			.then(response => response.json())
+			.then(post => {
+				dispatch(replacePost(post));
+				routerHistory.replace(`/posts/${post.id}`);
+			})
+			.catch(error => console.log(error));
+		
+	};
+};
+
+export const deletePost = (postId, routerHistory) => {
+	return dispatch => {
+		return fetch(`${API_URL}/posts/${postId}`, {
 			method: 'DELETE'
 		})
 		.then(response => {
-				dispatch(removePost(postIndex));
+				dispatch(removePost(postId));
 				routerHistory.replace(`/posts`);
 		})
-		.catch(error => console.log(error))
+		.catch(error => console.log(error));
 	};
 };
