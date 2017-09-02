@@ -18,6 +18,14 @@ class Posts extends Component {
 			<div className="PostsContainer">
 				<h1>Posts</h1>
 				{this.props.posts.map(post => <PostCard key={post.id} post={post} />)}
+				<button style={{
+					color: 'white',
+            		background: 'red', 
+            		padding: '12px',
+            		border: 'none',
+            		borderRadius: '4px'
+				}}
+				onClick={() => deletePost(index)}>Remove</button>
 			</div>
 		);
 	}
@@ -29,8 +37,5 @@ const mapStateToProps = (state) => {
 	})
 }
 
-const matchDispatchToProps = dispatch => {
-	return bindActionCreators({ getPosts: getPosts}, dispatch)
-}
 
-export default connect(mapStateToProps, matchDispatchToProps)(Posts);
+export default connect(mapStateToProps, {deletePost})(Posts);

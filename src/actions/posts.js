@@ -3,17 +3,24 @@ import { resetPostForm } from './postForm';
 const API_URL = process.env.REACT_APP_API_URL;
 
 // ** Action Creators **
-const setPosts = posts => {
+export const setPosts = posts => {
 	return {
 		type: 'GET_POSTS_SUCCESS',
 		posts
 	}
 }
 
-const addPost = post => {
+export const addPost = post => {
 	return {
 		type: 'CREATE_POST_SUCCESS',
 		post
+	}
+}
+
+export const removePost = postIndex => {
+	return{
+		type: 'REMOVING_POST',
+		postIndex
 	}
 }
 // ** Async Actions **
@@ -43,3 +50,16 @@ export const createPost = post => {
 			.catch(error => console.log(error))
 	}
 }
+
+export const deletePost = (postIndex, routerHistory) => {
+	return dispatch => {
+		return fetch(`${API_URL}/posts/${postIndex}`, {
+			method: 'DELETE'
+		})
+		.then(response => {
+				dispatch(removePost(postIndex));
+				routerHistory.replace(`/posts`);
+		})
+		.catch(error => console.log(error))
+	};
+};

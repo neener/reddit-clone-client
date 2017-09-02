@@ -6,8 +6,16 @@ export default (state = [], action) => {
 		case 'CREATE_POST_SUCCESS':
 			return state.concat(action.post);
 
+		case 'REMOVE_POST': {
+			return [
+        		...state.slice(0, action.postIndex),
+        		...state.slice(action.postIndex + 1)
+      		];
+		}
+
 		default:
 			return state;
 
 	}
 }
+
