@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, Route } from 'react-router-dom';
 
-import CommentForm from './CommentForm';
+import CreateCommentForm from './CreateCommentForm';
 import EditPostForm from './EditPostForm'
 import Comment from '../components/Comment';
 
@@ -18,7 +18,8 @@ class PostDetail extends Component {
 			<div>
 				<Route
 					path={`${match.url}/edit`}
-					component={EditPostForm}/>
+					component={EditPostForm}
+				/>
 				<Route
 					exact
 					path={match.url}
@@ -36,7 +37,7 @@ class PostDetail extends Component {
 							<button onClick={() => deletePost(post.id, history)}>Delete</button>
 							{post.comments.map(comment => <Comment key={comment.id} deleteComment={deleteComment} postId={post.id} comment={comment} />)}
 	                        {post.comments.length > 0 && <h4>Comments: </h4>}
-	                        <CommentForm postId={post.id} />	
+	                        <CreateCommentForm postId={post.id} />	
 						</div>
 						:
 						<p>Loading...</p>
