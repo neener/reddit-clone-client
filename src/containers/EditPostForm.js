@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { updatePost } from '../actions/posts';
-import { PostForm } from './PostForm';
+import PostForm from '../components/PostForm';
 
 const EditPostForm = ({ updatePost, post, history }) => {
 	return <PostForm header={'Update Post'} buttonTitle={'Update'} onFormSubmit={updatePost} history={history} post={post} />; 

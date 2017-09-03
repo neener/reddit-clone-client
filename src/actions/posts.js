@@ -49,7 +49,7 @@ export const fetchPost = (postId) => {
 			.then(post => {
 				dispatch(setPosts([post]));
 			})
-			.catch(err => console.log(error));
+			.catch(error => console.log(error));
 	};
 };
 

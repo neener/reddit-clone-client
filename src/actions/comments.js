@@ -39,7 +39,9 @@ export const fetchComments = postId => {
 	return dispatch => {
 		return fetch(`${API_URL}/posts/${postId}/comments`)
 			.then(response => response.json())
-			.then(comments => dispatch(setComments(comments)));
+			.then(comments => {
+				dispatch(setComments(comments));
+			})
 			.catch(error => console.log(error));
 	};
 };
@@ -87,7 +89,6 @@ export const deleteComment = (postId, commentId) => {
 		})
 		.then(response => {
 				dispatch(removeComment(commentId, postId));
-				routerHistory.replace(`/posts`);
 		})
 		.catch(error => console.log(error))
 	};
