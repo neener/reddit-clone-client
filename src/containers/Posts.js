@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import PostCard from '../components/PostCard';
-//import PostForm from './PostForm';
+import PostForm from './PostForm';
+import PostDetail from './PostDetail';
 import { fetchPosts } from '../actions/posts';
 import './Posts.css'
 
@@ -26,7 +27,7 @@ class Posts extends Component {
 const mapStateToProps = (state) => {
 	return ({
 		posts: state.posts
-	})
+	});
 }
 
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import { updatePost } from '../actions/posts';
 import { PostForm } from './PostForm';
 
