@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { updatePostFormData } from '../actions/postForm';
 import { createPost } from '../actions/posts';
+import { submitButtonStyle , submitRoundField } from '../styles'
 
 class PostForm extends Component {
 
@@ -25,9 +26,9 @@ class PostForm extends Component {
 		
 		return (
 			<div>
-				Create a New Post
+				<h2>Create a New Post</h2>
 				<form onSubmit={this.handleOnSubmit}>
-					<div>
+					<div style={submitRoundField}>
 						<label htmlFor="title">Title:</label>
 						<input
 							type="text"
@@ -36,7 +37,7 @@ class PostForm extends Component {
 							value={title}
 						/>
 					</div>
-					<div>
+					<div style={submitRoundField}>
 						<label htmlFor="link">Link:</label>
 						<input
 							type="text"
@@ -45,7 +46,7 @@ class PostForm extends Component {
 							value={link}
 						/>
 					</div>
-					<div>
+					<div style={submitRoundField}>
 						<label htmlFor="img_url">Image Url:</label>
 						<input
 							type="text"
@@ -55,7 +56,9 @@ class PostForm extends Component {
 						/>
 					</div>
 
-					<button type="submit">Post</button>
+					<button 
+						style={submitButtonStyle}
+						type="submit">Post</button>
 				</form>
 			</div>
 		)

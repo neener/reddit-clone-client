@@ -8,6 +8,9 @@ import Comment from '../components/Comment'
 
 import { deletePost } from '../actions/posts'
 import { deleteComment } from '../actions/comments'
+import { postCard, postImage} from '../styles';
+
+const Timestamp = require('react-timestamp');
 
 class PostDetail extends Component {
   findPost = postId => {
@@ -31,9 +34,10 @@ class PostDetail extends Component {
               <div>
                 <h2>{post.title}</h2>
                 <hr />
-                <h3>{post.link}</h3>
+                <h3><a href={post.link} target="_blank">Link</a></h3>
+                <h4>Posted: <Timestamp time={post.created_at} /></h4>
                 <img
-                  className="PostImage"
+                  style = { postImage }
                   src={post.img_url}
                   alt={post.title}
                 />
@@ -48,6 +52,7 @@ class PostDetail extends Component {
                 <button onClick={() => deletePost(post.id, history)}>
                   Delete
                 </button>
+                {post.comments.length > 0 && <h4>Comments: </h4>}
                 {post.comments.map(comment => (
                   <Comment
                     key={comment.id}
@@ -56,7 +61,6 @@ class PostDetail extends Component {
                     comment={comment}
                   />
                 ))}
-                {post.comments.length > 0 && <h4>Comments: </h4>}
                 <CreateCommentForm postId={post.id} />
               </div>
             ) : (

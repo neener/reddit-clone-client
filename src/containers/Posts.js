@@ -6,7 +6,7 @@ import PostCard from '../components/PostCard';
 import CreatePostForm from './CreatePostForm';
 import PostDetail from './PostDetail';
 import { fetchPosts } from '../actions/posts';
-import './Posts.css'
+
 
 class Posts extends Component {
 

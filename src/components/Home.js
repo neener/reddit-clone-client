@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 
 const Home = () => {
 	return (
-		<div>
+		<div style={{ marginTop: '32px', padding:'16px'}}>
 			<h1>Welcome to Freddit</h1>
-			<p> create a post and let anyone comment on it </p>
+			<p> This app is loosely based on a Reddit Clone. Anyone can create a post and anyone can comment on a post. </p>
+			<p> Click <Link to='/posts'>HERE</Link> to see what people are talking about </p>
 		</div>
 	)
 }

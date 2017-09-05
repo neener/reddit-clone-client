@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 class PostForm extends Component {
 
 	constructor(props) {
@@ -36,7 +37,7 @@ class PostForm extends Component {
 			<form onSubmit={this.handleOnSubmit}>
                 <h2>{this.props.header}</h2>
                 <hr />
-	                <div>
+	                <div >
 	                    <label htmlFor="title">Title:</label>
 	                </div>
 	                <input
