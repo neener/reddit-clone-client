@@ -13,7 +13,8 @@ export default (state = initialState, action) => {
 		case 'RESET_POST_FORM':
 			return initialState;
 
-		default:
+		default: {
 			return state;
+		}
 	}
 }

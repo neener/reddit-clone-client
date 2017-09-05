@@ -37,7 +37,9 @@ export const fetchPosts = () => {
 	return dispatch => {
 		return fetch(`${API_URL}/posts`)
 			.then(response => response.json())
-			.then(posts => dispatch(setPosts(posts)))
+			.then(posts => {
+				dispatch(setPosts(posts));
+			})
 			.catch(error => console.log(error));
 	};
 };

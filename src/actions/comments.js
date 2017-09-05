@@ -53,15 +53,17 @@ export const createComment = (postId, newComment) => {
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({ comment: newComment })
+			body: JSON.stringify({ 
+				comment: newComment 
+			})
 		})
 			.then(response => response.json())
 			.then(comment => {
 				dispatch(addComment(comment));
 			})
 			.catch(error => console.log(error))
-	}
-}
+	};
+};
 
 export const updateComment = (postId, updatedComment) => {
     return dispatch => {
