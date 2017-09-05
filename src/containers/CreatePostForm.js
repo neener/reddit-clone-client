@@ -16,7 +16,8 @@ class PostForm extends Component {
 
 	handleOnSubmit = event => {
 		event.preventDefault()
-		this.props.createPost(this.props.postFormData)
+		const { createPost, postFormData, history} = this.props;
+		createPost(postFormData, history);
 	}
 
 	render() {

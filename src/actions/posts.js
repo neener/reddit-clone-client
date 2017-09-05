@@ -55,7 +55,7 @@ export const fetchPost = (postId) => {
 	};
 };
 
-export const createPost = post => {
+export const createPost = (post, routerHistory) => {
 	return dispatch => {
 		return fetch(`${API_URL}/posts`, {
 			method: "POST",
@@ -68,6 +68,7 @@ export const createPost = post => {
 			.then(post => {
 				dispatch(addPost(post))
 				dispatch(resetPostForm())
+				routerHistory.replace(`/posts/${post.id}`)
 			})
 			.catch(error => console.log(error));
 	};
