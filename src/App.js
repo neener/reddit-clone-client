@@ -7,6 +7,7 @@ import {
 
 import Home from './components/Home';
 import Posts from './containers/Posts';
+import About from './components/About';
 import { appStyle, appHeader, appIntro } from './styles'
 
 
@@ -24,10 +25,13 @@ class App extends Component {
 						<Link to='/'><button>Freddit</button></Link>
 						<Link to='/posts'><button>Posts</button></Link>
 						<Link to='/posts/new'><button>Create Post</button></Link>
+						<Link to='/about'><button>About</button></Link>
+
 					</div>
 					<div>
 						<Route exact path='/' component={Home}/>
 						<Route path='/posts' component={Posts}/>
+						<Route path='/about' component={About}/>
 					</div>
 				</div>	
 			</Router>
