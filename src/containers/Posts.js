@@ -8,6 +8,7 @@ import PostDetail from './PostDetail';
 import { fetchPosts } from '../actions/posts';
 
 
+
 class Posts extends Component {
 
 	componentDidMount() {
@@ -17,14 +18,20 @@ class Posts extends Component {
 	render() {
 		const { posts, match } = this.props;
 		const renderPosts = posts.map(post => (
-			<Link
-				to={`${match.url}/${post.id}`}
-				key={post.id}
-				style={{ textDecoration: 'none'}} >
-
-				<PostCard post={post} />
-			</Link>
+			<div>
+				<Link
+					to={`${match.url}/${post.id}`}
+					key={post.id}
+					style={{ color: 'red' }} >
+					View Post
+				</Link>
+				<PostCard post={post} />	
+			</div>
 		));
+
+
+		
+			
 
 		return (
 			<div>
