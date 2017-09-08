@@ -19,13 +19,7 @@ class Posts extends Component {
 		const { posts, match } = this.props;
 		const renderPosts = posts.map(post => (
 			<div>
-				<Link
-					to={`${match.url}/${post.id}`}
-					key={post.id}
-					style={{ color: 'red' }} >
-					View Post
-				</Link>
-				<PostCard post={post} />	
+				<PostCard post={post} url={match.url}/>	
 			</div>
 		));
 
