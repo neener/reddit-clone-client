@@ -17,6 +17,13 @@ export const addPost = post => {
 	};
 };
 
+export const upvotePost = post => {
+	return {
+		type: 'UPVOTE_POST',
+		post
+	}
+}
+
 export const replacePost = post => {
 	return {
 		type: 'REPLACE_POST',
@@ -69,6 +76,23 @@ export const createPost = (post, routerHistory) => {
 				dispatch(addPost(post))
 				dispatch(resetPostForm())
 				routerHistory.replace(`/posts/${post.id}`)
+			})
+			.catch(error => console.log(error));
+	};
+};
+
+export const createUpvote = (postId) => {
+	return dispatch => {
+		return fetch(`${API_URL}/posts/${postId}/upvotes`, {
+			method: "POST",
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ post_id : postId })
+		})
+			.then(response => response.json())
+			.then(post => {
+				dispatch(upvotePost(post))
 			})
 			.catch(error => console.log(error));
 	};

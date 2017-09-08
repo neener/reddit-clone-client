@@ -11,6 +11,19 @@ export default (state = [], action) => {
 			return state.concat(action.post);
 		};
 
+		case 'UPVOTE_POST': {
+			const index = state.findIndex(post => post.id === action.post.id);
+			const post = state[index];
+			const updatedPost = Object.assign({}, post, {
+                upvote_count: action.post.upvote_count
+            });
+            return [
+                ...state.slice(0, index),
+                updatedPost,
+                ...state.slice(index + 1)
+            ];
+		}
+
 		case 'REPLACE_POST': {
 			const index = state.findIndex(post => post.id === action.post.id);
 

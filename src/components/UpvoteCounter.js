@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { createUpvote } from '../actions/posts'
 
-export default class UpvoteCounter extends Component{
-	constructor(){
-		super();
-
+class UpvoteCounter extends Component{
+	constructor(props){
+		super(props);
 		this.state = {
-			count: 0,
+			postId: props.postId,
+			count: props.upvoteCount
 		};
 
 		this.handleClick = this.handleClick.bind(this);
@@ -16,6 +18,7 @@ export default class UpvoteCounter extends Component{
 		this.setState({
 			count: ++this.state.count,
 		});
+		this.props.createUpvote(this.state.postId)
 	}
 
 	render(){
@@ -24,3 +27,5 @@ export default class UpvoteCounter extends Component{
 		);
 	}
 }
+
+export default connect(null, { createUpvote })(UpvoteCounter);

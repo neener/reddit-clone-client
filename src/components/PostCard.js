@@ -9,7 +9,7 @@ const PostCard = ({ post }) => (
 		<h3><a href={post.link} target="_blank">Link</a></h3>
 		<p>Posted: <Timestamp time={post.created_at} format='full' /></p>
 		<img style={postImage} src={post.img_url} alt={post.title} />
-		<UpvoteCounter />
+		<UpvoteCounter postId={post.id} upvoteCount={post.upvote_count}/>
 	</div>
 )
 
