@@ -7,9 +7,29 @@ import CreatePostForm from './CreatePostForm';
 import PostDetail from './PostDetail';
 import { fetchPosts } from '../actions/posts';
 
-
-
 class Posts extends Component {
+
+	constructor(props) {
+		super(props);
+
+			this.state = {
+				sortedPosts: []
+			}
+
+		this.handleClick = this.handleClick.bind(this)
+	}
+
+	handleClick(){
+		this.setState({
+			sortedPosts: this.props.posts.sort(function(a,b){
+				if (a.upvote_count > b.upvote_count)
+					return -1
+				if (a.upvote_count < b.upvote_count)
+					return 1
+				return 0
+			})
+		})
+	}
 
 	componentDidMount() {
 		this.props.fetchPosts();
@@ -22,10 +42,6 @@ class Posts extends Component {
 				<PostCard post={post} url={match.url}/>	
 			</div>
 		));
-
-
-		
-			
 
 		return (
 			<div>
@@ -44,6 +60,7 @@ class Posts extends Component {
 								render={() => (
 									<div>
 										<h2>Posts</h2>
+										<button onClick={this.handleClick}>Sort by Upvote</button>
 										<hr />
 										{renderPosts}
 									</div>
