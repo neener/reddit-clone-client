@@ -19,16 +19,16 @@ class Posts extends Component {
 		this.handleClick = this.handleClick.bind(this)
 	}
 
-	handleClick(){
-		this.setState({
-			sortedPosts: this.props.posts.sort(function(a,b){
-				if (a.upvote_count > b.upvote_count)
-					return -1
-				if (a.upvote_count < b.upvote_count)
-					return 1
-				return 0
-			})
-		})
+	handleClick = () => {
+				this.setState({ 
+					sortedPosts: this.props.posts.sort(function(a,b){
+						if (a.upvote_count > b.upvote_count)
+							return -1
+						if (a.upvote_count < b.upvote_count)
+							return 1
+						return 0
+					})
+				})
 	}
 
 	componentDidMount() {
@@ -37,12 +37,22 @@ class Posts extends Component {
 
 	render() {
 		const { posts, match } = this.props;
-		const renderPosts = posts.map(post => (
-			<div>
-				<PostCard post={post} url={match.url}/>	
-			</div>
-		));
 
+		let renderPosts
+		if (this.state.sortedPosts.length === 0) {
+			renderPosts = posts.map(post =>
+				<div>
+					<PostCard post={post} url={match.url}/>	
+				</div>
+			)
+		} else {
+			renderPosts = this.state.sortedPosts.map(post =>
+				<div>
+					<PostCard post={post} url={match.url}/>	
+				</div>
+			)
+		}
+		
 		return (
 			<div>
 				{
